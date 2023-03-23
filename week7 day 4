@@ -1,0 +1,84 @@
+Kumar has been given a string and asked to determine whether it can be converted into a palindrome after removing at most one character
+Input Format
+str="abcbea"
+Constraints
+1<=Str.length<=10^3 Str consists of Lowercase English characters
+Output Format
+true
+
+
+
+import java.io.*;
+import java.util.*;
+
+public class Solution 
+{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
+        boolean result = isPalindromePossible(str);
+        System.out.println(result);
+    }
+    
+    public static boolean isPalindromePossible(String str) {
+        int i = 0;
+        int j = str.length() - 1;
+        while (i < j) {
+            if (str.charAt(i) != str.charAt(j)) {
+                // check if removing character at index i or j makes it a palindrome
+                return isPalindrome(str, i + 1, j) || isPalindrome(str, i, j - 1);
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+    
+    public static boolean isPalindrome(String str, int i, int j) {
+        while (i < j) {
+            if (str.charAt(i) != str.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+}
+
+
+Mr. Ultalal is very intelligent person and He has a habit to read every word in reverse order. One day he went to book store the buy a book But in book all the paragraphs / sentences were written in regular word. So help Mr. Ultalal to read a book using java code in reverse order. The code accepts a string and display the new string after reversing each character of the word in lower case. If the string contains number or string is null then display the massage “Invalid input”
+Input Format
+Enter the String :Lovely Professional University ylevol lanoisseforp ytisrevinu First line read the input as String
+Constraints
+numbers of word in string > 1 numbers of word in string > 1
+Output Format
+Display the string in reverse order in lowercase
+
+
+import java.util.Scanner;
+
+public class ReverseWords {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        String inputString = sc.nextLine();
+        sc.close();
+
+        if (inputString == null || inputString.matches(".\\d.")) {
+            System.out.println("Invalid input");
+            return;
+        }
+
+        String[] words = inputString.split(" ");
+        StringBuilder result = new StringBuilder();
+
+        for (String word : words) {
+            StringBuilder reverseWord = new StringBuilder(word.toLowerCase());
+            reverseWord.reverse();
+            result.append(reverseWord).append(" ");
+        }
+
+        System.out.println(result.toString().trim()); 
+    }
+}
